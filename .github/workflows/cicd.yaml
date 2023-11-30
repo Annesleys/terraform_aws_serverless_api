@@ -24,7 +24,7 @@ jobs:
     - name: build artifacts
       run: | 
         sudo apt install zip -y
-        zip health.zip health.py
+        zip health.zip index.py
 
     - name: Install AWS CLI
       run: |
