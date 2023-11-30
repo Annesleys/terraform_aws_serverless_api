@@ -26,11 +26,17 @@ jobs:
         sudo apt install zip -y
         zip health.zip health.py
 
+    - name: Install AWS CLI
+      run: |
+        sudo apt-get install -y awscli
+
+    - name: Configure AWS CLI
+      run: |
+        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY }}
+        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_KEY }}
+        aws configure set default.region ${{ vars.AWS_REGION }
+        aws s3 ls
+        
     - name: S3 upload
-      uses: roimor/aws-cli-action@v1
-      with:
-        args: s3 cp health.zip s3://${{ vars.BUCKET_NAME }}/
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
-        AWS_DEFAULT_REGION: ${{ vars.AWS_REGION }}
+      run: aws s3 cp health.zip s3://${{ vars.BUCKET_NAME }}/
+
