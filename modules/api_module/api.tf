@@ -36,7 +36,7 @@ resource "aws_lambda_permission" "apigw_lambda" {
 }
 
 resource "aws_api_gateway_deployment" "my_deployment" {
-  depends_on      = [aws_api_gateway_integration.integration]
+  depends_on  = [aws_api_gateway_integration.integration]
   rest_api_id = aws_api_gateway_rest_api.MyApi.id
   stage_name  = var.env # Set your desired stage name
 }

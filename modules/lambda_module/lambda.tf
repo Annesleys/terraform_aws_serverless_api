@@ -53,7 +53,7 @@ resource "null_resource" "dummy_artifact" {
 
     environment = {
       artifact_name = "${var.artifact_name}.zip"
-      bucket_name        = var.s3_bucket
+      bucket_name   = var.s3_bucket
     }
 
     interpreter = [

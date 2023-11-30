@@ -33,14 +33,17 @@ jobs:
             aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_KEY }}
             aws configure set default.region ${{ vars.AWS_REGION }}
 
-        - name: terraform init -migrate-state
-          id: InitMigrateState
-          run: terraform init -reconfigure
+        - name: linting
+          id: fmt
+          run: |
+            pip install pre-commit
+            pre-commit run --all-files
+            terraform fmt -recursive
 
         - name: Terraform Init
           id: Init
           run: terraform init
-    
+        
         - name: Terraform Validate
           id: Validate
           run: terraform validate
