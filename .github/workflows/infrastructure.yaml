@@ -33,7 +33,7 @@ jobs:
 
         - name: terraform init -migrate-state
           id: InitMigrateState
-          run: terraform init -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" -backend-config="${{ secrets.AWS_SECRET_KEY }}"
+          run: terraform init -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" -backend-config="secret_key="${{ secrets.AWS_SECRET_KEY }}"
 
         - name: Terraform Init
           id: Init
