@@ -37,7 +37,9 @@ jobs:
     
         - name: Terraform Plan
           id: Plan
-          run: terraform plan
+          run: |
+            export profile:${{ var.AWS_PROFILE }}
+            export region={{ var.AWS_REGION$ }}
 
         - name: Terraform Apply
           id: Plan

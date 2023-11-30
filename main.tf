@@ -12,16 +12,6 @@ provider "aws" {
   profile = var.profile
 }
 
-#################### Creating VPC ####################
-
-module "vpc" {
-  source         = "./modules/vpc_module/"
-  cidr_block     = var.cidr_block
-  public_subnet  = var.public_subnet
-  private_subnet = var.private_subnet
-
-}
-
 #################### Creating api ####################
 
 module "api" {
@@ -36,4 +26,5 @@ module "api" {
 
 module "lambda" {
   source = "./modules/lambda_module/"
+  s3_bucket = var.s3_bucket
 }

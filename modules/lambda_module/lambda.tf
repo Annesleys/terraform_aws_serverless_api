@@ -49,7 +49,7 @@ resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
 
 
 resource "aws_lambda_function" "terraform_lambda_func" {
-  s3_bucket     = "deployment-bucket-anna"
+  s3_bucket     = var.s3_bucket
   s3_key        = "index.py.zip"
   function_name = "Lambda_Function"
   role          = aws_iam_role.lambda_role.arn

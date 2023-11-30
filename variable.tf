@@ -7,22 +7,12 @@ variable "region" {
   description = "default region to deploy"
 }
 
-variable "cidr_block" {
-  type        = string
-  description = "CIDR block for your VPC"
-}
-
-variable "public_subnet" {
-  type        = list(any)
-  description = "List of public subnet with prefix"
-}
-
-variable "private_subnet" {
-  type        = list(any)
-  description = "List of private subnet with prefix"
-}
-
 variable "env" {
   type        = string
   description = "List of environments"
+}
+
+variable "s3_bucket" {
+  type        = string
+  description = "Artifect bucket"
 }
