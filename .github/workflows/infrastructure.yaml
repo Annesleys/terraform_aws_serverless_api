@@ -65,7 +65,7 @@ jobs:
             export region=$AWS_REGION$
             export s3_bucket=$BUCKET_NAME
 
-            erraform apply -auto-approve
+            terraform apply -auto-approve
           env:
             profile: ${{secrets.AWS_PROFILE}}
             region: ${{secrets.AWS_REGION}}
