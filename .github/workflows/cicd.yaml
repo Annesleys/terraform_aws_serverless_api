@@ -34,9 +34,9 @@ jobs:
       run: |
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY }}
         aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_KEY }}
-        aws configure set default.region ${{ vars.AWS_REGION }
+        aws configure set default.region ${{ vars.AWS_REGION }}
         aws s3 ls
-        
+
     - name: S3 upload
       run: aws s3 cp health.zip s3://${{ vars.BUCKET_NAME }}/
 
