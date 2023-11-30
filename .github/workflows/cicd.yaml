@@ -1,0 +1,52 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  LambdaCI:
+    name: 'lambda CI'
+    runs-on: ubuntu
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: install npm
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14.x
+
+    - name: S3 upload
+      uses: ItsKarma/aws-cli@v1.70.0
+      with:
+        args: s3 cp --delete --acl public-read localdir/ s3://remote-bucket/
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: "us-east-1"
+
+    - name: Initialize Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.2.4
+
+    - name: Terraform Init
+      id: Init
+      run: terraform init
+      working-directory: ./PROD
+
+    - name: Terraform Validate
+      id: Validate
+      run: terraform validate
+      working-directory: ./PROD
+
+    - name: Terraform Plan
+      id: Plan
+      run: terraform plan
+      working-directory: ./PROD
