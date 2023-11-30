@@ -25,5 +25,9 @@ module "vpc" {
 #################### Creating Web Application ####################
 
 module "api" {
-  source         = "./modules/api_module/"
+  source = "./modules/api_module/"
+}
+
+module "lambda" {
+  source = "./modules/lambda_module/"
 }
