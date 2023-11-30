@@ -30,10 +30,10 @@ jobs:
           uses: hashicorp/setup-terraform@v1
           with:
             terraform_version: 1.2.4
-    
+
         - name: terraform init -migrate-state
           id: InitMigrateState
-          run: terraform init -migrate-state
+          run: terraform init -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" -backend-config="${{ secrets.AWS_SECRET_KEY }}"
 
         - name: Terraform Init
           id: Init
