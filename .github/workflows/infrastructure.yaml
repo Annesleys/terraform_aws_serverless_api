@@ -33,10 +33,9 @@ jobs:
             aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_KEY }}
             aws configure set default.region ${{ vars.AWS_REGION }}
 
-
         - name: terraform init -migrate-state
           id: InitMigrateState
-          run: terraform init -migrate-state
+          run: terraform init -reconfigure
 
         - name: Terraform Init
           id: Init
