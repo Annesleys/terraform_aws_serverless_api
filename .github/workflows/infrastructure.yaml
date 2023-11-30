@@ -16,17 +16,17 @@ jobs:
         # Checkout the repository to the GitHub Actions runner
         - name: Checkout
           uses: actions/checkout@v2
-    
+
         - name: install npm
           uses: actions/setup-node@v3
           with:
             node-version: 14.x
-        
+
         - name: Initialize Terraform
           uses: hashicorp/setup-terraform@v1
           with:
             terraform_version: 1.2.4
-        
+
         - name: Configure AWS CLI
           run: |
             aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY }}
@@ -43,11 +43,11 @@ jobs:
         - name: Terraform Init
           id: Init
           run: terraform init
-        
+
         - name: Terraform Validate
           id: Validate
           run: terraform validate
-    
+
         - name: Terraform Plan
           id: Plan
           run: |
