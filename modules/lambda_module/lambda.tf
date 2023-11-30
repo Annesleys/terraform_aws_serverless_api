@@ -18,10 +18,10 @@ EOF
 }
 
 resource "aws_iam_policy" "iam_policy_for_lambda" {
- name         = "aws_iam_policy_for_terraform_aws_lambda_role"
- path         = "/"
- description  = "AWS IAM Policy for managing aws lambda role"
- policy = <<EOF
+  name        = "aws_iam_policy_for_terraform_aws_lambda_role"
+  path        = "/"
+  description = "AWS IAM Policy for managing aws lambda role"
+  policy      = <<EOF
 {
  "Version": "2012-10-17",
  "Statement": [
@@ -49,8 +49,8 @@ resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
 
 
 resource "aws_lambda_function" "terraform_lambda_func" {
-s3_bucket         = "test-ano-v"
-  s3_key            = "python.zip"
+  s3_bucket     = "deployment-bucket-anna"
+  s3_key        = "index.py.zip"
   function_name = "Lambda_Function"
   role          = aws_iam_role.lambda_role.arn
   handler       = "index.lambda_handler"
