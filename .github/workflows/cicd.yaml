@@ -23,7 +23,7 @@ jobs:
         node-version: 14.x
     - name: build artifacts
       run: | 
-        apt install zip -y
+        sudo apt install zip -y
         zip health.zip health.py
 
     - name: S3 upload
