@@ -3,6 +3,10 @@ on:
     branches:
       - main
 
+env:
+  TF_VAR_example_variable: "your_value"
+
+
 jobs:
   infrastructure:
     name: 'infrastructure'
@@ -44,9 +48,9 @@ jobs:
 
             terraform plan
           env:
-            profile: ${{AWS_PROFILE}}
-            region: ${{AWS_REGION}}
-            s3_bucket: ${{BUCKET_NAME}}
+            profile: ${{secrests.AWS_PROFILE}}
+            region: ${{secrests.AWS_REGION}}
+            s3_bucket: ${{secrests.BUCKET_NAME}}
 
         - name: Terraform Apply
           id: Apply
