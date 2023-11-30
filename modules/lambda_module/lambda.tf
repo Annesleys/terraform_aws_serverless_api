@@ -52,7 +52,7 @@ resource "null_resource" "dummy_artifact" {
     command = "${path.module}/dummy.sh"
 
     environment = {
-      artifact_name = var.artifact_name
+      artifact_name = "${var.artifact_name}.zip"
       bucket_name        = var.s3_bucket
     }
 
@@ -65,7 +65,7 @@ resource "null_resource" "dummy_artifact" {
 
 resource "aws_lambda_function" "terraform_lambda_func" {
   s3_bucket     = var.s3_bucket
-  s3_key        = var.artifact_name
+  s3_key        = "${var.artifact_name}.zip"
   function_name = "Lambda_Function"
   role          = aws_iam_role.lambda_role.arn
   handler       = "${var.artifact_name}.lambda_handler"
