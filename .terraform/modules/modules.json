@@ -1,1 +1,24 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"api","Source":"./modules/api_module","Dir":"modules/api_module"},{"Key":"lambda","Source":"./modules/lambda_module","Dir":"modules/lambda_module"},{"Key":"vpc","Source":"./modules/vpc_module","Dir":"modules/vpc_module"}]}
+{
+    "Modules": [
+        {
+            "Key": "",
+            "Source": "",
+            "Dir": "."
+        },
+        {
+            "Key": "api",
+            "Source": "./modules/api_module",
+            "Dir": "modules/api_module"
+        },
+        {
+            "Key": "lambda",
+            "Source": "./modules/lambda_module",
+            "Dir": "modules/lambda_module"
+        },
+        {
+            "Key": "vpc",
+            "Source": "./modules/vpc_module",
+            "Dir": "modules/vpc_module"
+        }
+    ]
+}
