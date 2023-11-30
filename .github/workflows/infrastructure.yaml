@@ -32,7 +32,7 @@ jobs:
             terraform_version: 1.2.4
     
         - name: terraform init -migrate-state
-          id: init -migrate-state
+          id: InitMigrateState
           run: terraform init -migrate-state
 
         - name: Terraform Init
