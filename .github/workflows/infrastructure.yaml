@@ -48,9 +48,9 @@ jobs:
 
             terraform plan
           env:
-            profile: ${{secrests.AWS_PROFILE}}
-            region: ${{secrests.AWS_REGION}}
-            s3_bucket: ${{secrests.BUCKET_NAME}}
+            profile: ${{secrets.AWS_PROFILE}}
+            region: ${{secrets.AWS_REGION}}
+            s3_bucket: ${{secrets.BUCKET_NAME}}
 
         - name: Terraform Apply
           id: Apply
@@ -61,6 +61,6 @@ jobs:
 
             erraform apply -auto-approve
           env:
-            profile: ${{AWS_PROFILE}}
-            region: ${{AWS_REGION}}
-            s3_bucket: ${{BUCKET_NAME}}
+            profile: ${{secrets.AWS_PROFILE}}
+            region: ${{secrets.AWS_REGION}}
+            s3_bucket: ${{secrets.BUCKET_NAME}}
