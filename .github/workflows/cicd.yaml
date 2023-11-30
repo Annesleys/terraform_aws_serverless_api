@@ -4,8 +4,8 @@ on:
       - main
 
 jobs:
-  LambdaCI:
-    name: 'lambda CI'
+  CI:
+    name: 'CI'
     runs-on: ubuntu-latest
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -35,8 +35,35 @@ jobs:
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY }}
         aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_KEY }}
         aws configure set default.region ${{ vars.AWS_REGION }}
-        aws s3 ls
 
     - name: S3 upload
       run: aws s3 cp health.zip s3://${{ vars.BUCKET_NAME }}/
 
+
+  CD:
+    name: 'CD'
+    runs-on: ubuntu-latest
+    neats: [CI]
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install AWS CLI
+      run: |
+        sudo apt-get install -y awscli
+
+    - name: Configure AWS CLI
+      run: |
+        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY }}
+        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_KEY }}
+        aws configure set default.region ${{ vars.AWS_REGION }}
+        aws lambda update-function-code \
+           --function-name  Lambda_Function \
+          --s3-bucket vars.BUCKET_NAME \
+          --s3-key health.zip
