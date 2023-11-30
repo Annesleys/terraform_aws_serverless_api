@@ -25,7 +25,7 @@ module "api" {
 #################### Creating Lambda ####################
 
 module "lambda" {
-  source = "./modules/lambda_module/"
+  source        = "./modules/lambda_module/"
   s3_bucket     = var.s3_bucket
   artifact_name = var.artifact_name
 }

@@ -22,7 +22,7 @@ jobs:
       with:
         node-version: 14.x
     - name: build artifacts
-      run: | 
+      run: |
         sudo apt install zip -y
         zip health.zip index.py
 
