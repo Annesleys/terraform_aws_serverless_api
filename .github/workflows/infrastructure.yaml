@@ -44,10 +44,19 @@ jobs:
 
             terraform plan
           env:
-            profile: ${{var.AWS_PROFILE}}
-            region: ${{var.AWS_REGION}}
-            s3_bucket: ${{var.BUCKET_NAME}}
+            profile: ${{AWS_PROFILE}}
+            region: ${{AWS_REGION}}
+            s3_bucket: ${{BUCKET_NAME}}
 
         - name: Terraform Apply
-          id: Plan
-          run: terraform apply -auto-approve
+          id: Apply
+          run: |
+            export profile=$AWS_PROFILE
+            export region=$AWS_REGION$
+            export s3_bucket=$BUCKET_NAME
+
+            erraform apply -auto-approve
+          env:
+            profile: ${{AWS_PROFILE}}
+            region: ${{AWS_REGION}}
+            s3_bucket: ${{BUCKET_NAME}}
