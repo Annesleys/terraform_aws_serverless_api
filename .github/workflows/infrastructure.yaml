@@ -38,8 +38,15 @@ jobs:
         - name: Terraform Plan
           id: Plan
           run: |
-            export profile:${{ var.AWS_PROFILE }}
-            export region={{ var.AWS_REGION$ }}
+            export profile=$AWS_PROFILE
+            export region=$AWS_REGION$
+            export s3_bucket=$BUCKET_NAME
+
+            terraform plan
+          env:
+            profile: ${{var.AWS_PROFILE}}
+            region: ${{var.AWS_REGION}}
+            s3_bucket: ${{var.BUCKET_NAME}}
 
         - name: Terraform Apply
           id: Plan
