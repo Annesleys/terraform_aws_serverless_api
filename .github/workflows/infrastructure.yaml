@@ -26,10 +26,17 @@ jobs:
           uses: hashicorp/setup-terraform@v1
           with:
             terraform_version: 1.2.4
+        
+        - name: Configure AWS CLI
+          run: |
+            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY }}
+            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_KEY }}
+            aws configure set default.region ${{ vars.AWS_REGION }}
+
 
         - name: terraform init -migrate-state
           id: InitMigrateState
-          run: terraform init -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" -backend-config="secret_key="${{ secrets.AWS_SECRET_KEY }}"
+          run: terraform init -migrate-state
 
         - name: Terraform Init
           id: Init
