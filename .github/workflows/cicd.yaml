@@ -27,7 +27,7 @@ jobs:
         zip health.zip health.py
 
     - name: S3 upload
-      uses: ItsKarma/aws-cli@v1.70.0
+      uses: roimor/aws-cli-action@v1
       with:
         args: s3 cp health.zip s3://${{ vars.BUCKET_NAME }}/
       env:
