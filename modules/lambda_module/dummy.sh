@@ -1,6 +1,6 @@
 #!/bin/bash
 
 sudo apt install zip -y
-        zip $artifact_name.zip index.py
+        zip index.zip index.py
 
-aws s3 cp $artifact_name.zip s3://$bucket_name/
+aws s3 cp index.zip s3://$bucket_name/
