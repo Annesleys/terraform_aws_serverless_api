@@ -1,5 +1,5 @@
 resource "aws_iam_role" "lambda_role" {
-  name               = "Lambda_Function_Role"
+  name               = "Lambda_Function_RoleV2"
   assume_role_policy = <<EOF
 {
  "Version": "2012-10-17",
@@ -18,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_policy" "iam_policy_for_lambda" {
-  name        = "aws_iam_policy_for_terraform_aws_lambda_role"
+  name        = "aws_iam_policy_for_terraform_aws_lambda_roleV2"
   path        = "/"
   description = "AWS IAM Policy for managing aws lambda role"
   policy      = <<EOF
@@ -66,7 +66,7 @@ resource "null_resource" "dummy_artifact" {
 resource "aws_lambda_function" "terraform_lambda_func" {
   s3_bucket     = var.s3_bucket
   s3_key        = "${var.artifact_name}.zip"
-  function_name = "Lambda_Function"
+  function_name = "Lambda_Function_Dev"
   role          = aws_iam_role.lambda_role.arn
   handler       = "${var.artifact_name}.lambda_handler"
   runtime       = "python3.8"

@@ -64,6 +64,6 @@ jobs:
         aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_KEY }}
         aws configure set default.region ${{ vars.AWS_REGION }}
         aws lambda update-function-code \
-           --function-name  ${{ vars.LAMBDA_FUNCTION }} \
+           --function-name  ${{ vars.Lambda_Function_Dev }} \
           --s3-bucket ${{ vars.BUCKET_NAME }} \
           --s3-key health.zip
