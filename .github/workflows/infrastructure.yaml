@@ -40,13 +40,13 @@ jobs:
         #     pre-commit run --all-files
         #     terraform fmt -recursive
 
-        - name: terraform init -migrate-state
-          id: InitMigrateState
-          run: terraform init -reconfigure
+        # - name: terraform init -migrate-state
+        #   id: InitMigrateState
+        #   run: terraform init -reconfigure
 
-        # - name: Terraform Init
-        #   id: Init
-        #   run: terraform init
+        - name: Terraform Init
+          id: Init
+          run: terraform init
 
         - name: Terraform Validate
           id: Validate
