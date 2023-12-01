@@ -65,12 +65,12 @@ resource "null_resource" "dummy_artifact" {
 
 ########## Lambda Function ###############
 
-resource "aws_lambda_function" "terraform_lambda_func" {
-  s3_bucket     = var.s3_bucket
-  s3_key        = "${var.artifact_name}.zip"
-  function_name = "Lambda_Function_Dev"
-  role          = aws_iam_role.lambda_role.arn
-  handler       = "${var.artifact_name}.lambda_handler"
-  runtime       = "python3.8"
-  depends_on    = [aws_iam_role_policy_attachment.attach_iam_policy_to_iam_role, null_resource.dummy_artifact]
-}
+# resource "aws_lambda_function" "terraform_lambda_func" {
+#   s3_bucket     = var.s3_bucket
+#   s3_key        = "${var.artifact_name}.zip"
+#   function_name = "Lambda_Function_Dev"
+#   role          = aws_iam_role.lambda_role.arn
+#   handler       = "${var.artifact_name}.lambda_handler"
+#   runtime       = "python3.8"
+#   depends_on    = [aws_iam_role_policy_attachment.attach_iam_policy_to_iam_role, null_resource.dummy_artifact]
+# }
