@@ -1,3 +1,5 @@
+########### Resources for Lambda ############
+
 resource "aws_iam_role" "lambda_role" {
   name               = "Lambda_Function_RoleV2"
   assume_role_policy = <<EOF
@@ -39,7 +41,6 @@ resource "aws_iam_policy" "iam_policy_for_lambda" {
 EOF
 }
 
-
 resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
   role       = aws_iam_role.lambda_role.name
   policy_arn = aws_iam_policy.iam_policy_for_lambda.arn
@@ -49,7 +50,7 @@ resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
 
 resource "null_resource" "dummy_artifact" {
   provisioner "local-exec" {
-    command = "${path.module}/dummy.sh"
+    command = "bash ${path.module}/dummy.sh"
 
     environment = {
       bucket_name = var.s3_bucket
@@ -61,6 +62,8 @@ resource "null_resource" "dummy_artifact" {
     ]
   }
 }
+
+########## Lambda Function ###############
 
 resource "aws_lambda_function" "terraform_lambda_func" {
   s3_bucket     = var.s3_bucket
