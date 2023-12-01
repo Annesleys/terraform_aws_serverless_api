@@ -45,15 +45,14 @@ resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
   policy_arn = aws_iam_policy.iam_policy_for_lambda.arn
 }
 
-///////////////////////
+####### Uploading dummy artifact to s3 bucket to create Lambda function #############
 
 resource "null_resource" "dummy_artifact" {
   provisioner "local-exec" {
     command = "${path.module}/dummy.sh"
 
     environment = {
-      artifact_name = "${var.artifact_name}.zip"
-      bucket_name   = var.s3_bucket
+      bucket_name = var.s3_bucket
     }
 
     interpreter = [
