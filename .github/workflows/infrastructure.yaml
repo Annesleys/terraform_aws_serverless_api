@@ -42,11 +42,11 @@ jobs:
 
         - name: terraform init -migrate-state
           id: InitMigrateState
-          run: terraform init -migrate-state
+          run: terraform init -reconfigure
 
-        - name: Terraform Init
-          id: Init
-          run: terraform init
+        # - name: Terraform Init
+        #   id: Init
+        #   run: terraform init
 
         - name: Terraform Validate
           id: Validate
