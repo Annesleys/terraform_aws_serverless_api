@@ -50,7 +50,7 @@ resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
 
 resource "null_resource" "dummy_artifact" {
   provisioner "local-exec" {
-    command = "dummy.sh"
+    command = "bash dummy.sh"
 
     environment = {
       bucket_name = var.s3_bucket
