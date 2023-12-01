@@ -54,26 +54,8 @@ jobs:
 
         - name: Terraform Plan
           id: Plan
-          run: |
-            # export profile=$AWS_PROFILE
-            # export region=$AWS_REGION$
-            # export s3_bucket=$BUCKET_NAME
-
-            terraform plan
-          # env:
-          #   profile: ${{secrets.AWS_PROFILE}}
-          #   region: ${{secrets.AWS_REGION}}
-          #   s3_bucket: ${{secrets.BUCKET_NAME}}
+          run: terraform plan
 
         - name: Terraform Apply
           id: Apply
-          run: |
-            export profile=$AWS_PROFILE
-            export region=$AWS_REGION$
-            export s3_bucket=$BUCKET_NAME
-
-            terraform apply -auto-approve
-          env:
-            profile: ${{secrets.AWS_PROFILE}}
-            region: ${{secrets.AWS_REGION}}
-            s3_bucket: ${{secrets.BUCKET_NAME}}
+          run: terraform apply -auto-approve
