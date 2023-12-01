@@ -7,3 +7,8 @@ variable "artifact_name" {
   type        = string
   description = "Artifect zip file"
 }
+
+variable "env" {
+  type        = string
+  description = "Environment"
+}
