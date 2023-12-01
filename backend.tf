@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket  = "backend-terraform-anna"
+    bucket  = "test-ano-v"
     key     = "terraform.tfstate"
-    region  = "us-east-1"
-    profile = "default"
+    region  = "eu-west-1"
+    profile = "aps"
   }
 }
